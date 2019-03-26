@@ -1,0 +1,188 @@
+
+<div class="container">
+  <div class="jumbotron">
+    <form class="" action="index.html" method="post" #frm='ngForm'  (ngSubmit)="addUser(frm)">
+
+
+
+      <div class="form-group">
+
+        <label for="name">Name</label>
+        <input type="text" name="name" value="" class="form-control"
+         ngModel
+        required
+        #nameUser="ngModel"
+        pattern="[a-zA-Z][a-ZA-Z]+">
+
+
+        <div   *ngIf='nameUser.touched'       class="alert alert-danger">
+
+
+          <div *ngIf="nameUser.errors?. required" >
+      Name is required
+
+          </div>
+
+          <div *ngIf="nameUser.errors?.pattern">
+          invalid name
+
+          </div>
+
+
+              </div>
+
+
+
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label for="contact">Contact</label>
+        <input type="text" name="contact" value="" class="form-control" ngModel required pattern="[0-9]*"
+        #nameContact='ngModel'
+        maxlength="10"
+        minlength='10'
+        >
+
+
+        <div   *ngIf='nameContact.touched'       class="alert alert-danger">
+
+
+          <div *ngIf="nameContact.errors?.required" >
+        Contact is required
+
+          </div>
+
+          <div *ngIf='nameContact.errors?.pattern'>
+            Contact is invalid
+
+          </div>
+
+
+<div   *ngIf="nameContact.errors?.pattern||nameContact.errors?.minlength">
+  Invalid contact
+</div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <label for="email">Email</label>
+        <input type="text" name="email" value=""  class="form-control"
+        ngModel
+        required
+         pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"
+  #useremail='ngModel'>
+
+<div   *ngIf='useremail.touched'       class="alrt alert-danger">
+
+
+  <div *ngIf="useremail.errors?. required" class="alert alert-danger">
+Email is required
+
+  </div>
+
+  <div *ngIf="useremail.errors?.pattern">
+    invalid email
+
+  </div>
+
+
+      </div>
+
+
+
+      </div>
+
+
+
+<div class="form-group" >
+
+
+  <label for="address">Adress</label>
+
+  <input type="text" name="adress" value=""
+  class='form-control'
+  ngModel
+ #useradress='ngModel'
+ required
+
+
+
+  >
+
+
+  <div         *ngIf=useradress.touched       class="alert alert-danger">
+    <div *ngIf="useradress.errors?.required" >
+  Contact is required
+
+    </div>
+  </div>
+
+
+
+
+</div>
+
+
+<div class="form-group">
+  <label for="dist">district</label>
+
+  <select class="form-control" name="">
+
+    <option value=""> 	Andhra Pradesh</option>
+      <option value="">Uttarakhand</option>
+        <option value="">Telangana</option>
+          <option value=""> 	Andaman and Nicobar</option>
+  </select>
+</div>
+
+<div class="form-group">
+
+
+  <label for="pincode">Pincode</label>
+
+  <input type="text" name="" value=""
+name="pincde"
+ngModel
+#userpin="ngModel"
+required
+class="form-control"
+maxlength="6"
+minlength="6"
+pattern='[0-9]*'
+  >
+
+  <div  *ngIf="userpin.touched" class="alert alert-danger">
+    <div  *ngIf="userpin.errors?.required">
+      pin is required
+
+    </div>
+
+    <div  *ngIf="userpin.errors?.pattern||userpin.errors?.minlength">
+      Invalid pin
+    </div>
+
+
+  </div>
+</div>
+
+
+
+      <button type="submit"  class="btn btn-success"  [disabled]="frm.invalid">AddUser</button>
+
+
+    </form>
+  </div>
+</div>
+
+{{frm.value|json}}
+
+
+<ul  *ngFor="let  user of userList" class="list-group-item">
+
+<li>{{user?.name}}</li>
+</ul>
